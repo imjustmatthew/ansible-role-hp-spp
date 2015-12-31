@@ -2,3 +2,6 @@
 
   - include: redhat.yml
     when: ansible_os_family == "RedHat" and ansible_system_vendor == "HP"
+
+  - include: debian.yml
+    when: ansible_os_family == "debian" and ansible_system_vendor == "HP"

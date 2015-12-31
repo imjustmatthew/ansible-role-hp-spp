@@ -7,6 +7,13 @@ Defaults to:
  - hpssacli
  - hp-health
 
+A foundation for making this work on Debian based system is also
+included. It is however missing:
+ - testing
+ - an hpspp.list template
+
+PRs are welcome
+
 Requirements
 ------------
 

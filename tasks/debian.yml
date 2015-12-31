@@ -1,0 +1,23 @@
+---
+
+
+  - name: import hp gpgkeys
+    apt_key: state=present key=http://downloads.linux.hp.com/SDR/repo/mcp/GPG-KEY-mcp
+
+  - name: import hp gpgkeys3
+    apt_key: state=present key=http://downloads.linux.hp.com/SDR/repo/mcp/hpPublicKey2048_key1.pub
+
+#  - name: copy in templates/hpspp.list
+#    template: src=hpspp.list dest=/etc/source.list.d/hpspp.list owner=root group=root mode=0644
+#    when: add_hpspp_repofile
+
+  - name: install hpssacli (new hpacucli)
+    apt: pkg={{item}} state=installed
+    with_items: hpspp_software
+    when: hpspp_software.0 != ""
+
+  - name: symlink hpacucli to hpssacli (so scripts work..)
+    file: src=/usr/sbin/hpssacli dest=/usr/sbin/hpacucli owner=root group=root state=link
+
+  - name: enable hp-health on boot
+    service: name=hp-health enabled=yes state=started
