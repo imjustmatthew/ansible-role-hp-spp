@@ -14,6 +14,11 @@ included. It is however missing:
 
 PRs are welcome
 
+Debian currently systems don't have the SPP (so no firmwares). Instead there is the
+MCP (Management Component Pack). More details in: 
+
+http://downloads.linux.hp.com/SDR/repo/spp/Debian.ReadMe
+
 Requirements
 ------------
 
