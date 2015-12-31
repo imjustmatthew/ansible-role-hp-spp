@@ -3,6 +3,10 @@ ansible-role-hp-spp
 
 Install HP SPP repo and install some software from it.
 
+Defaults to:
+ - hpssacli
+ - hp-health
+
 Requirements
 ------------
 
