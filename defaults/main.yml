@@ -1,0 +1,7 @@
+---
+# defaults file for ansible-role-hp-spp
+add_hpspp_repofile: True
+hpspp_version: "current"
+hpspp_software:
+ - hpssacli
+ - hp-health

@@ -1,0 +1,7 @@
+[spp]
+name=Service Pack for ProLiant
+#baseurl=http://downloads.linux.hp.com/repo/spp/rhel/dist_ver/arch/project_ver
+baseurl=http://downloads.linux.hpe.com/repo/spp/rhel/{{ ansible_distribution_major_version }}/x86_64/{{ hpspp_version }}/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/GPG-KEY-ServicePackforProLiant

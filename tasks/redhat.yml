@@ -1,0 +1,25 @@
+---
+
+  - name: import hp gpgkeys
+    rpm_key: state=present key=https://downloads.linux.hpe.com/SDR/hpPublicKey1024.pub
+
+  - name: import hp gpgkeys2
+    rpm_key: state=present key=https://downloads.linux.hpe.com/SDR/hpPublicKey2048.pub
+
+  - name: import hp gpgkeys3
+    rpm_key: state=present key=https://downloads.linux.hpe.com/SDR/repo/spp/GPG-KEY-SPP
+
+  - name: copy in templates/hpspp.repo
+    template: src=hpspp.repo dest=/etc/yum.repos.d/hpspp.repo owner=root group=root mode=0644
+    when: add_hpspp_repofile
+
+  - name: install hpssacli (new hpacucli)
+    yum: pkg={{item}} state=installed
+    with_items: hpspp_software
+    when: hpspp_software.0 != ""
+
+  - name: symlink hpacucli to hpssacli (so scripts work..)
+    file: src=/usr/sbin/hpssacli dest=/usr/sbin/hpacucli owner=root group=root state=link
+
+  - name: enable hp-health on boot
+    service: name=hp-health enabled=yes state=started
