@@ -1,13 +1,13 @@
 ---
 
   - name: import hp gpgkeys
-    rpm_key: state=present key=https://downloads.linux.hpe.com/SDR/hpPublicKey1024.pub
+    rpm_key: state=present key=http://downloads.linux.hpe.com/SDR/hpPublicKey1024.pub
 
   - name: import hp gpgkeys2
-    rpm_key: state=present key=https://downloads.linux.hpe.com/SDR/hpPublicKey2048.pub
+    rpm_key: state=present key=http://downloads.linux.hpe.com/SDR/hpPublicKey2048.pub
 
   - name: import hp gpgkeys3
-    rpm_key: state=present key=https://downloads.linux.hpe.com/SDR/repo/spp/GPG-KEY-SPP
+    rpm_key: state=present key=http://downloads.linux.hpe.com/SDR/repo/spp/GPG-KEY-SPP
 
   - name: copy in templates/hpspp.repo
     template: src=hpspp.repo dest=/etc/yum.repos.d/hpspp.repo owner=root group=root mode=0644
