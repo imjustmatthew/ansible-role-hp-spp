@@ -6,3 +6,8 @@ hpspp_software:
  - hpssacli
  - hp-health
  - hponcfg
+
+add_hpstk_repofile: True
+hpstk_version: "current"
+hpstk_software:
+ - hp-scripting-tools

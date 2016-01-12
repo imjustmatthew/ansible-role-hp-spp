@@ -6,6 +6,8 @@ Install HP SPP repo and install some software from it.
 Defaults to:
  - hpssacli
  - hp-health
+ - hponcfg
+ - conrep
 
 A foundation for making this work on Debian based system is also
 included. It is however missing:
