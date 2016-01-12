@@ -5,3 +5,4 @@ hpspp_version: "current"
 hpspp_software:
  - hpssacli
  - hp-health
+ - hponcfg
