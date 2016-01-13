@@ -1,13 +1,14 @@
 ansible-role-hp-spp
 =========
 
-Install HP SPP repo and install some software from it.
+Install HP SPP and STK repo and install some software from it.
 
 Defaults to:
  - hpssacli
  - hp-health
  - hponcfg
  - conrep
+ - hp-scripting-toolkit
 
 A foundation for making this work on Debian based system is also
 included. It is however missing:
