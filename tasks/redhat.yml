@@ -12,11 +12,11 @@
   - name: import hp gpgkeys4
     rpm_key: state=present key=http://downloads.linux.hpe.com/SDR/repo/stk/GPG-KEY-stk
 
-  - name: copy in templates/hpspp.repo
+  - name: template in templates/hpspp.repo
     template: src=hpspp.repo dest=/etc/yum.repos.d/hpspp.repo owner=root group=root mode=0644
     when: add_hpspp_repofile
 
-  - name: copy in templates/hpstk.repo
+  - name: template in templates/hpstk.repo
     template: src=hpstk.repo dest=/etc/yum.repos.d/hpstk.repo owner=root group=root mode=0644
     when: add_hpstk_repofile
 
@@ -24,6 +24,11 @@
     yum: pkg={{item}} state=installed
     with_items: hpspp_software
     when: hpspp_software.0 != ""
+
+  - name: install hpstk_software
+    yum: pkg={{item}} state=installed
+    with_items: hpstk_software
+    when: hpstk_software.0 != ""
 
   - name: symlink hpacucli to hpssacli (so scripts work..)
     file: src=/usr/sbin/hpssacli dest=/usr/sbin/hpacucli owner=root group=root state=link
