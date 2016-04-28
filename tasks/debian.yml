@@ -13,7 +13,7 @@
 
   - name: install hpssacli (new hpacucli)
     apt: pkg={{item}} state=installed
-    with_items: hpspp_software
+    with_items: "{{ hpspp_software }}"
     when: hpspp_software.0 != ""
 
   - name: symlink hpacucli to hpssacli (so scripts work..)
