@@ -3,8 +3,7 @@
   - name: import hp gpgkeys
     rpm_key: state=present key={{ item }}
     with_items:
-        - http://downloads.linux.hpe.com/SDR/hpPublicKey1024.pub
-        - http://downloads.linux.hpe.com/SDR/hpPublicKey2048.pub
+        - http://downloads.linux.hpe.com/SDR/hpePublicKey2048_key1.pub
         - http://downloads.linux.hpe.com/SDR/repo/spp/GPG-KEY-SPP
         - http://downloads.linux.hpe.com/SDR/repo/stk/GPG-KEY-stk
 
