@@ -16,7 +16,7 @@
 
   - name: remove HP MCP repo with HTTP transport
     apt_repository:
-      repo: "deb http://downloads.linux.hpe.com/SDR/repo/mcp {{ hpmcp_distro_source | default("{{ansible_lsb.codename}}/current") }} non-free"
+      repo: "deb http://downloads.linux.hpe.com/SDR/repo/mcp {{hpmcp_distro_source | default(ansible_lsb.codename)}}/{{hpmcp_distro_version | default('current')}} non-free"
       state: absent
       filename: HP-MCP-HTTP
       update_cache: no
@@ -24,7 +24,7 @@
     
   - name: remove HP MCP repo with HTTPS transport
     apt_repository:
-      repo: "deb https://downloads.linux.hpe.com/SDR/repo/mcp {{ hpmcp_distro_source | default("{{ansible_lsb.codename}}/current") }} non-free"
+      repo: "deb https://downloads.linux.hpe.com/SDR/repo/mcp {{hpmcp_distro_source | default(ansible_lsb.codename)}}/{{hpmcp_distro_version | default('current')}} non-free"
       state: absent
       filename: HP-MCP-HTTPS
       update_cache: no
@@ -32,7 +32,7 @@
 
   - name: add HP MCP repo with HTTP transport
     apt_repository:
-      repo: "deb http://downloads.linux.hpe.com/SDR/repo/mcp {{ hpmcp_distro_source | default("{{ansible_lsb.codename}}/current") }} non-free"
+      repo: "deb http://downloads.linux.hpe.com/SDR/repo/mcp {{hpmcp_distro_source | default(ansible_lsb.codename)}}/{{hpmcp_distro_version | default('current')}} non-free"
       state: present
       filename: HP-MCP-HTTP
       update_cache: yes
@@ -40,7 +40,7 @@
     
   - name: add HP MCP repo with HTTPS transport
     apt_repository:
-      repo: "deb https://downloads.linux.hpe.com/SDR/repo/mcp {{ hpmcp_distro_source | default("{{ansible_lsb.codename}}/current") }} non-free"
+      repo: "deb https://downloads.linux.hpe.com/SDR/repo/mcp {{hpmcp_distro_source | default(ansible_lsb.codename)}}/{{hpmcp_distro_version | default('current')}} non-free"
       state: present
       filename: HP-MCP-HTTPS
       update_cache: yes
