@@ -11,3 +11,6 @@ add_hpstk_repofile: True
 hpstk_version: "current"
 hpstk_software:
  - hp-scripting-tools
+ 
+# optionally define a specific debian/ubuntu distro and version for packages:
+#hpmcp_distro_source: trusty/current
