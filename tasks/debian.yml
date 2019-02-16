@@ -1,15 +1,51 @@
 ---
 
+#it would be nice if we could just gather facts about one pacakge...
+  - name: Gather pacakge facts
+    package_facts:
+      manager: "auto"
 
-  - name: import hp gpgkeys
+  - name: import HP gpgkeys
     apt_key: state=present key={{ item }}
     with_items:
         - http://downloads.linux.hp.com/SDR/repo/mcp/GPG-KEY-mcp
         - http://downloads.linux.hp.com/SDR/repo/mcp/hpPublicKey2048_key1.pub
 
-#  - name: copy in templates/hpspp.list
-#    template: src=hpspp.list dest=/etc/source.list.d/hpspp.list owner=root group=root mode=0644
-#    when: add_hpspp_repofile
+# remove first, then add. This ensures that if apt-transport-https is installed later we end up in a consistant state with a working cache. 
+# Includes support for removing the apt-transport-https package because why not...
+
+  - name: remove HP MCP repo with HTTP transport
+    apt_repository:
+      repo: "deb http://downloads.linux.hpe.com/SDR/repo/mcp {{ hpmcp_distro_source | default("{{ansible_lsb.codename}}/current") }} non-free"
+      state: absent
+      filename: HP-MCP-HTTP
+      update_cache: no
+    when: packages['apt-transport-https'] is defined
+    
+  - name: remove HP MCP repo with HTTPS transport
+    apt_repository:
+      repo: "deb https://downloads.linux.hpe.com/SDR/repo/mcp {{ hpmcp_distro_source | default("{{ansible_lsb.codename}}/current") }} non-free"
+      state: absent
+      filename: HP-MCP-HTTPS
+      update_cache: no
+    when: packages['apt-transport-https'] is not defined
+
+  - name: add HP MCP repo with HTTP transport
+    apt_repository:
+      repo: "deb http://downloads.linux.hpe.com/SDR/repo/mcp {{ hpmcp_distro_source | default("{{ansible_lsb.codename}}/current") }} non-free"
+      state: present
+      filename: HP-MCP-HTTP
+      update_cache: yes
+    when: packages['apt-transport-https'] is not defined
+    
+  - name: add HP MCP repo with HTTPS transport
+    apt_repository:
+      repo: "deb https://downloads.linux.hpe.com/SDR/repo/mcp {{ hpmcp_distro_source | default("{{ansible_lsb.codename}}/current") }} non-free"
+      state: present
+      filename: HP-MCP-HTTPS
+      update_cache: yes
+    when: packages['apt-transport-https'] is defined
+
 
   - name: install hpssacli (new hpacucli)
     apt: pkg={{item}} state=installed
