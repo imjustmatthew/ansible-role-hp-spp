@@ -3,9 +3,9 @@
   - name: import hp gpgkeys
     rpm_key: state=present key={{ item }}
     with_items:
-        - http://downloads.linux.hpe.com/SDR/hpePublicKey2048_key1.pub
-        - http://downloads.linux.hpe.com/SDR/repo/spp/GPG-KEY-SPP
-        - http://downloads.linux.hpe.com/SDR/repo/stk/GPG-KEY-stk
+        - https://downloads.linux.hpe.com/SDR/hpePublicKey2048_key1.pub
+        - https://downloads.linux.hpe.com/SDR/repo/spp/GPG-KEY-SPP
+        - https://downloads.linux.hpe.com/SDR/repo/stk/GPG-KEY-stk
 
   - name: template in templates/hpspp.repo
     template: src=hpspp.repo dest=/etc/yum.repos.d/hpspp.repo owner=root group=root mode=0644

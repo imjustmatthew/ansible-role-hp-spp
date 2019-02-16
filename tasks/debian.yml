@@ -4,8 +4,8 @@
   - name: import hp gpgkeys
     apt_key: state=present key={{ item }}
     with_items:
-        - http://downloads.linux.hp.com/SDR/repo/mcp/GPG-KEY-mcp
-        - http://downloads.linux.hp.com/SDR/repo/mcp/hpPublicKey2048_key1.pub
+        - https://downloads.linux.hp.com/SDR/repo/mcp/GPG-KEY-mcp
+        - https://downloads.linux.hp.com/SDR/repo/mcp/hpPublicKey2048_key1.pub
 
 #  - name: copy in templates/hpspp.list
 #    template: src=hpspp.list dest=/etc/source.list.d/hpspp.list owner=root group=root mode=0644
