@@ -5,11 +5,29 @@
     package_facts:
       manager: "auto"
 
-  - name: import HP gpg key
+  - name: import HP gpg key for packages published through 2013	
+    apt_key: 
+      state: present
+      id: 527BC53A2689B887
+      url: https://downloads.linux.hpe.com/SDR/hpPublicKey1024.pub
+      
+  - name: import HP gpg key for packages published during 2014
+    apt_key: 
+      state: present
+      id: B070680A5CE2D476
+      url: https://downloads.linux.hpe.com/SDR/hpPublicKey2048.pub
+      
+  - name: import HP gpg key for packages published during 2015
     apt_key: 
       state: present
       id: FADD8D64B1275EA3
-      url: https://downloads.linux.hpe.com/SDR/repo/mcp/GPG-KEY-mcp
+      url: https://downloads.linux.hpe.com/SDR/hpPublicKey2048_key1.pub
+      
+  - name: import HP gpg key for packages published after 2015
+    apt_key: 
+      state: present
+      id: C208ADDE26C2B797
+      url: https://downloads.linux.hpe.com/SDR/hpePublicKey2048_key1.pub
 
 # remove first, then add. This ensures that if apt-transport-https is installed later we end up in a consistant state with a working cache. 
 # Includes support for removing the apt-transport-https package because why not...
