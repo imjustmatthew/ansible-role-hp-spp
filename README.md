@@ -27,6 +27,13 @@ Requirements
 
 Internet
 
+Note that if you are using Debian the default values for "hpspp_software" will **not** work for you. You will need to specify the following value instead:
+
+hpspp_software:
+ - ssacli
+ - ssaducli
+ - hponcfg
+
 Role Variables
 --------------
 

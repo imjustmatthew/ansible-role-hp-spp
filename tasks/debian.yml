@@ -65,13 +65,13 @@
     when: packages['apt-transport-https'] is defined
 
 
-  - name: install hpssacli (new hpacucli)
-    apt: pkg={{item}} state=installed
-    with_items: "{{ hpspp_software }}"
+  - name: Update repositories cache and install specified packages from hpspp_software variable
+    apt:
+      name: "{{ hpspp_software }}"
+      state: present
+      update_cache: yes
     when: hpspp_software.0 != ""
 
   - name: symlink hpacucli to hpssacli (so scripts work..)
     file: src=/usr/sbin/hpssacli dest=/usr/sbin/hpacucli owner=root group=root state=link
 
-  - name: enable hp-health on boot
-    service: name=hp-health enabled=yes state=started
