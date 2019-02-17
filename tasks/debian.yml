@@ -72,6 +72,10 @@
       update_cache: yes
     when: hpspp_software.0 != ""
 
-  - name: symlink hpacucli to hpssacli (so scripts work..)
-    file: src=/usr/sbin/hpssacli dest=/usr/sbin/hpacucli owner=root group=root state=link
+  - name: symlink hpacucli to ssacli (so scripts work...)
+    file: src=/usr/sbin/ssacli dest=/usr/sbin/hpacucli owner=root group=root state=link
+
+  - name: symlink hpssacli to ssacli (so scripts work...)
+    file: src=/usr/sbin/ssacli dest=/usr/sbin/hpssacli owner=root group=root state=link
+
 
