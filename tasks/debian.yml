@@ -5,11 +5,11 @@
     package_facts:
       manager: "auto"
 
-  - name: import HP gpgkeys
-    apt_key: state=present key={{ item }}
-    with_items:
-        - https://downloads.linux.hp.com/SDR/repo/mcp/GPG-KEY-mcp
-        - https://downloads.linux.hp.com/SDR/repo/mcp/hpPublicKey2048_key1.pub
+  - name: import HP gpg key
+    apt_key: 
+      state: present
+      id: FADD8D64B1275EA3
+      url: https://downloads.linux.hp.com/SDR/repo/mcp/GPG-KEY-mcp
 
 # remove first, then add. This ensures that if apt-transport-https is installed later we end up in a consistant state with a working cache. 
 # Includes support for removing the apt-transport-https package because why not...
