@@ -5,9 +5,9 @@
     package_facts:
       manager: "auto"
 
-  - name: import HP gpg key for packages published through 2013	
+  - name: remove HP gpg key for packages published through 2013	
     apt_key: 
-      state: present
+      state: absent
       id: 527BC53A2689B887
       url: https://downloads.linux.hpe.com/SDR/hpPublicKey1024.pub
       
